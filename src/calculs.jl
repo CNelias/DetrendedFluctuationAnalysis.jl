@@ -1,4 +1,4 @@
-export fluctuation_function, DFA, log_space
+export fluctuation_function
 using Polynomials
 using PyPlot
 
