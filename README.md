@@ -5,15 +5,13 @@ A module to perform DCCA analysis, sometimes also called DFA 2D because it works
 excactly like DFA but extended for potentially 2 time series.
 
 The implementation is based, among others, on this article:
+*Podobnik B Stanley H . Detrended cross-correlation analysis: A new method for analyzing two nonstationary time series (2008)*         DOI : 10.1103/PhysRevLett.100.084102
 
-*Podobnik B Stanley H . Detrended cross-correlation analysis: A new method for analyzing two nonstationary time series (2008) * DOI : 10.1103/PhysRevLett.100.084102
-
-  
 ### Perform a 2D DFA computation :
------------------------------------
 
-To perform a 2D DFA computation, call the DFA function providing the following arguments: 
+Call the DFA function DFA(data1,data1,box_b::Int,box_s::Int,nb_pt::Int,plot::Bool).
 
+the arguments have the following meaning :
 * data1, data2 : the first  and second time series of data to analyse
 * box_b, box_s : the starting and ending point of the analysis. It's recommended for box_s not to be to big in comparison to 
 the total length of the time-series, otherwise you'll get artefacts. Stopping at a box_s roughly equal to 1/4 of the total length 
@@ -21,18 +19,23 @@ is a good idea.
 * nb_pt : the number of points you want to perform the analysis onto. 
 * plot : A boolean parameter. If given true, the function will plot the results of the 2D DFA analysis.
 
-example :
+### Perform a traditional DFA computation :
+
+Simply feed the DFA function with the same time serie twice (in other words data1 and data2 needs to be provided with the same time serie)
+the rest is identical to a 2D DFA computation !
+
+### Example of 1D DFA :
+
 ```julia
 julia> x1 = rand(1000); x2 = rand(1000)
 DFA(x1,x2,20,200,30,true)
 ```
 will give the following plot :
 
+![index](https://user-images.githubusercontent.com/34754896/42816220-672c4f84-89ca-11e8-9974-576e8a26a23f.png)
 
-### Perform a traditional DFA computation :
 
-Simply feed the DFA function with the same time serie twice (in other words data1 and data2 needs to be provided with the same time serie)
-the rest is identical to a 2D DFA computation !
+
 
 Requirements
 ------------
