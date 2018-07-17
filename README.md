@@ -27,8 +27,8 @@ the rest is identical to a 2D DFA computation !
 ### Example of 1D DFA :
 
 ```julia
-julia> x1 = rand(1000); x2 = rand(1000)
-DFA(x1,x2,20,200,30,true)
+julia> x = rand(1000)
+DFA(x,x,20,200,30,true)
 ```
 will give the following plot :
 
