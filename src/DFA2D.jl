@@ -9,7 +9,7 @@ function DFA(data1,data2,box_b::Int,box_s::Int,nb_pt::Int,plot::Boolean)
     if plot == false 
       return y
     elseif plot == true
-      plot(x,y,"bo-",markersize = 4, label = DFA of data); 
+      plot(x,y,"bo-",markersize = 4, label = "DFA of data"); 
       a = linreg(log.(x),log.(y))[2]
       b = linreg(log.(x),log.(y))[1]      
       title("DFA_2D analysis")
