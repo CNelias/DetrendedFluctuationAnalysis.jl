@@ -6,18 +6,13 @@ excactly like DFA but extended for potentially 2 time series.
 
 The implementation is based, among others, on the following articles:
 
-* Podobnik B Stanley H . Detrended cross-correlation analysis: A new method for analyzing two nonstationary time series (2008)
+- Podobnik B Stanley H . Detrended cross-correlation analysis: A new method for analyzing two nonstationary time series (2008)
   DOI : 10.1103/PhysRevLett.100.084102
-* Zebende G, Da Silva, M MacHado Filho A. DCCA cross-correlation coefficient differentiation: Theoretical and practical approaches (2012).
+- Zebende G, Da Silva, M MacHado Filho A. DCCA cross-correlation coefficient differentiation: Theoretical and practical approaches (2012).
   DOI : 10.1016/j.physa.2013.01.011
   
-Requirements
-------------
-
-* Polynomials
-* PyPlo
-
-#### Perform a 2D DFA computation :
+### Perform a 2D DFA computation :
+-----------------------------------
 
 To perform a 2D DFA computation, call the DFA function providing the following arguments: 
 
@@ -30,9 +25,7 @@ is a good idea.
 
 example :
 '''julia
-x1 = rand(1000)
-x2 = rand(1000)
-DFA(x1,x2,20,200,30,true)
+julia> x1 = rand(1000); x2 = rand(1000); DFA(x1,x2,20,200,30,true)
 '''
 will give the following plot :
 
@@ -41,3 +34,9 @@ will give the following plot :
 
 Simply feed the DFA function with the same time serie twice (in other words data1 and data2 needs to be provided with the same time serie)
 the rest is identical to a 2D DFA computation !
+
+Requirements
+------------
+
+* Polynomials
+* PyPlo
