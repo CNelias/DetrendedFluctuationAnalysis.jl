@@ -1,3 +1,4 @@
+export fluctuation_function
 using Polynomials
 
 function log_space(start::Int,stop::Int,num::Int)
