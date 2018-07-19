@@ -27,9 +27,15 @@ the rest is identical to a 2D DFA computation !
 
 ### Example of 1D DFA :
 
+Calling the DFA function with white noise,
+
 ```julia
 julia> a = rand(1000)
 x,y = DFA(a,a,20,200,30,true)
+```
+will give the following plot :
+
+```julia
 plot(x,y,"bo-",markersize = 4, label = "DFA of data");      
 title("DFA_2D analysis")
 legend()
@@ -44,7 +50,6 @@ a = linreg(log.(x),log.(y))[2]
 b = linreg(log.(x),log.(y))[1] 
 plot(x,exp(b)*x.^a, color = "black",linestyle = ":", label = string(L"fit. exponant $\alpha$ = ", a))
 ```
-will give the following plot :
 
 ![index](https://user-images.githubusercontent.com/34754896/42816220-672c4f84-89ca-11e8-9974-576e8a26a23f.png)
 
