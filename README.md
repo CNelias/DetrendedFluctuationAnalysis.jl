@@ -10,7 +10,7 @@ The implementation is based, among others, on this article:
 
 ### Perform a 2D DFA computation :
 
-Call the DFA function DFA(data1,data1,box_b::Int,box_s::Int,nb_pt::Int,plot::Bool).
+Call the DFA function DFA(data1,data1,box_b::Int,box_s::Int,nb_pt::Int)
 
 the arguments have the following meaning :
 * data1, data2 : the first  and second time series of data to analyse
@@ -18,7 +18,6 @@ the arguments have the following meaning :
 the total length of the time-series, otherwise you'll get artefacts. Stopping at a box_s roughly equal to 1/4 of the total length 
 is a good idea.
 * nb_pt : the number of points you want to perform the analysis onto. 
-* plot : A boolean parameter. If given true, the function will plot the results of the 2D DFA analysis.
 
 It returns :
 * the list of points where the analysis was performed
