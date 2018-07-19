@@ -20,6 +20,10 @@ is a good idea.
 * nb_pt : the number of points you want to perform the analysis onto. 
 * plot : A boolean parameter. If given true, the function will plot the results of the 2D DFA analysis.
 
+It returns :
+* the list of points where the analysis was performed
+* the value of the fluctuation coefficient at each of these points
+
 ### Perform a traditional DFA computation :
 
 Simply feed the DFA function with the same time serie twice (in other words data1 and data2 needs to be provided with the same time serie)
