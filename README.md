@@ -29,7 +29,7 @@ It returns :
 Simply feed the DFA function with the same time serie twice (in other words data1 and data2 needs to be provided with the same time serie)
 the rest is identical to a 2D DFA computation !
 
-### Example of 1D DFA :
+### Example of DFA (1D) :
 
 Calling the DFA function with white noise,
 
@@ -40,7 +40,7 @@ x,y = DFA(a,a,20,200,30,true)
 will give the following plot :
 
 ```julia
-plot(x,y,"bo-",markersize = 4, label = "DFA of data");      
+plot(x,y,"bo-",markersize = 4, label = "DFA analysis of white noise");      
 title("DFA_2D analysis")
 legend()
 xscale("log")
@@ -55,8 +55,7 @@ b = linreg(log.(x),log.(y))[1]
 plot(x,exp(b)*x.^a, color = "black",linestyle = ":", label = string(L"fit. exponant $\alpha$ = ", a))
 ```
 
-![index](https://user-images.githubusercontent.com/34754896/42816220-672c4f84-89ca-11e8-9974-576e8a26a23f.png)
-
+![index](https://user-images.githubusercontent.com/34754896/42929947-e085364e-8b3b-11e8-80d9-98e863ad9744.png)
 
 
 
