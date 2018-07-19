@@ -1,8 +1,9 @@
-Detrended Cross-Correlation Analysis (DFA 2D)
+Detrended Fluctuation Analysis (DFA)
 =============================================
 
-A module to perform DCCA analysis, sometimes also called DFA 2D because it works 
-excactly like DFA but extended for potentially 2 time series.
+A module to perform DFA analysis, which also gives the possibility to analyse the correlations between two time series 
+(sometimes called the DCCA or DFA2D method). 
+The DFA allows one to study correlations in data, without disturbance of seasonality or trend.
 
 The implementation is based, among others, on this article:
 *Podobnik B Stanley H . Detrended cross-correlation analysis: A new method for analyzing two nonstationary time series (2008)*         DOI : 10.1103/PhysRevLett.100.084102
@@ -27,8 +28,21 @@ the rest is identical to a 2D DFA computation !
 ### Example of 1D DFA :
 
 ```julia
-julia> x = rand(1000)
-DFA(x,x,20,200,30,true)
+julia> a = rand(1000)
+x,y = DFA(a,a,20,200,30,true)
+plot(x,y,"bo-",markersize = 4, label = "DFA of data");      
+title("DFA_2D analysis")
+legend()
+xscale("log")
+yscale("log")
+xlabel("Log(s)")
+ylabel("Log(F(n))")
+
+# the following lines are here to perform the linear fit of the results
+# in order to get the exponent alpha
+a = linreg(log.(x),log.(y))[2]
+b = linreg(log.(x),log.(y))[1] 
+plot(x,exp(b)*x.^a, color = "black",linestyle = ":", label = string(L"fit. exponant $\alpha$ = ", a))
 ```
 will give the following plot :
 
@@ -41,4 +55,3 @@ Requirements
 ------------
 
 * Polynomials
-* PyPlot
