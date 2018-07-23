@@ -39,6 +39,8 @@ x,y = DFA(a,a,20,200,30,true)
 will give the following plot :
 
 ```julia
+using PyPlot
+
 plot(x,y,"bo-",markersize = 4);      
 title("DFA analysis of white noise")
 legend()
