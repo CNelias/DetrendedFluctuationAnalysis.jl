@@ -1,4 +1,4 @@
-module DFA2D
+module DetrendedFluctuationAnalysis
 
 include("calculs.jl")
 
