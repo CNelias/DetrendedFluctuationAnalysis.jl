@@ -2,7 +2,7 @@ export fluctuation_function
 using Polynomials
 
 function log_space(start::Int,stop::Int,num::Int)
-    tmp = map(x -> round(Int,x), exp10.(range(log10(start), stop = log10(stop),length = num))
+    tmp = map(x -> round(Int,x), exp10.(range(log10(start), stop = log10(stop),length = num)))
     spacing = Int64[]
     push!(spacing,tmp[1])
     deleteat!(tmp,1)
