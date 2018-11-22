@@ -34,7 +34,7 @@ Calling the DFA function with white noise,
 
 ```julia
 julia> a = rand(1000)
-x,y = DFA(a,a,20,200,30,true)
+x,y = DFA(a,a,20,200,30)
 ```
 will give the following plot :
 
