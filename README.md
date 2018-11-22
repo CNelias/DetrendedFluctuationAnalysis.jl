@@ -1,7 +1,7 @@
 Detrended Fluctuation Analysis (DFA)
 =============================================
 
-A module to perform DFA analysis, which also gives the possibility to analyse the correlations between two time series 
+A module to perform detrended fluctuation analysis, which also gives the possibility to analyse the correlations between two time series 
 (sometimes called the DCCA or DFA2D method). 
 The DFA allows one to study correlations in data, without disturbance of seasonality or trend.
 
