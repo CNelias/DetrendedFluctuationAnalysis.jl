@@ -64,3 +64,4 @@ Requirements
 ------------
 
 * Polynomials
+* LinearAlgebra
