@@ -1,7 +1,5 @@
 export fluctuation_function, log_space
-using Polynomials,Pkg
-Pkg.add("LinearAlgebra")
-using LinearAlgebra
+using Polynomials, LinearAlgebra
 
 function log_space(start::Int,stop::Int,num::Int)
     tmp = map(x -> round(Int,x), exp10.(range(log10(start), stop=log10(stop), length=num)))
