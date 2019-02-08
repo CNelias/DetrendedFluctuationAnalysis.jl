@@ -1,5 +1,5 @@
 export fluctuation_function, log_space
-using Polynomials, LinearAlgebra
+using Polynomials
 
 function log_space(start::Int,stop::Int,num::Int)
     tmp = map(x -> round(Int,x), exp10.(range(log10(start), stop=log10(stop), length=num)))
@@ -50,7 +50,7 @@ function fluctuation_function(x,y, box_start::Int, box_stop::Int, nb_pts::Int, s
         yi = partitioning(cumsum(y),i,step)
         n = length(xi)
         for j in 1:n
-            ffi += (1/i*dot(detrending(xi[j]),detrending(yi[j])))
+            ffi += 1/i*(detrending(xi[j])'*detrending(yi[j]))
         end
         append!(ff,sqrt(abs(ffi)))
     end
