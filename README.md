@@ -1,6 +1,6 @@
  **Travis**     
 :--------:
-[![Build Status](https://travis-ci.org/JuliaMusic/MusicManipulations.jl.svg?branch=master)](https://travis-ci.org/JuliaMusic/MusicManipulations.jl) 
+[![Build Status](https://travis-ci.com/johncwok/DetrendedFluctuationAnalysis.jl.svg?branch=master)](https://travis-ci.com/johncwok/DetrendedFluctuationAnalysis.jl)
 
 Detrended Fluctuation Analysis (DFA)
 =============================================
