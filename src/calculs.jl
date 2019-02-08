@@ -1,9 +1,9 @@
-export fluctuation_function
-using Polynomials
+export fluctuation_function, log_space
+using Polynomials, LinearAlgebra
 
 function log_space(start::Int,stop::Int,num::Int)
-    tmp = map(x -> round(Int,x), exp10.(range(log10(start), stop = log10(stop),length = num)))
-    spacing = Int64[]
+    tmp = map(x -> round(Int,x), exp10.(range(log10(start), stop=log10(stop), length=num)))
+    spacing = Int[]
     push!(spacing,tmp[1])
     deleteat!(tmp,1)
     for i in tmp
@@ -15,51 +15,44 @@ function log_space(start::Int,stop::Int,num::Int)
     end
     return spacing
 end
-    
-function partitioning(x,box_size) 
-    data = copy(x)
-    partitionned_data = Vector{Vector{Float64}}()
-    @inbounds for i in 1:(length(x)-(box_size-1))
-        tmp = Vector{Float64}()
-        @inbounds for j in 0:(box_size-1)
-            append!(tmp,data[i+j])
+
+
+function partitioning(x,window,step)
+    return [x[i:i+window-1] for i in 1:step:length(x) if  i + window <= length(x)]
+end
+
+function partitionin(x,box_size)
+    partitionned_data = Float64[]
+    len = length(x)-(box_size-1)
+    for i in 1:len
+        for j in 0:(box_size-1)
+            append!(partitionned_data,x[i+j])
         end
-        push!(partitionned_data,tmp)
     end
-    return hcat(partitionned_data...)'
+    return reshape(partitionned_data,(box_size,len))'
 end
 
-function detrending(values; reg_type = "linear", order = 1)
+function detrending(values; order = 1)
     position = collect(1:length(values))
-    if reg_type == "polynomial"
     fit = polyfit(position,values,order)
-    return values -  polyval(fit,position)
-    elseif reg_type == "linear"
-    curve = linreg(position,values)
-    return values - (position*curve[2] + curve[1])
-    end
+    return values - polyval(fit,position)
 end
 
-function integrate(x)
-    return cumsum(x)
-end
-
-function fluctuation_function(x,y, box_start::Int, box_stop::Int, nb_pts::Int; fit_type = "polynomial")
+function fluctuation_function(x,y, box_start::Int, box_stop::Int, nb_pts::Int, step::Int)
     if mod(box_start,10) !=0 || mod(box_stop,10) !=0
-        print("ERROR : sizes of windows must be multiple of 10")     
+        print("ERROR : sizes of windows must be multiple of 10")
     end
     ff = Float64[]
-    ffi = Float64[]
-    @inbounds for i in log_space(box_start,box_stop,nb_pts)
+    #ffi = Float64[]
+    for i in log_space(box_start,box_stop,nb_pts)
         ffi = 0
-        xi = partitioning(integrate(x),i)
-        yi = partitioning(integrate(y),i)
-        n = length(@view xi[:,1])
-        @inbounds for j in 1:n
-            ffi += ((1/i)*detrending(xi[j,:]; reg_type = fit_type)'detrending(yi[j,:]; reg_type = fit_type))
+        xi = partitioning(cumsum(x),i,step)
+        yi = partitioning(cumsum(y),i,step)
+        n = length(xi)
+        for j in 1:n
+            ffi += (1/i*dot(detrending(xi[j]),detrending(yi[j])))
         end
-        append!(ff,1/n*sqrt(abs(ffi)))
+        append!(ff,sqrt(abs(ffi)))
     end
     return ff
 end
-
