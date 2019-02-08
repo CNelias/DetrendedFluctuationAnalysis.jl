@@ -1,3 +1,7 @@
+ **Travis**     
+:--------:
+[![Build Status](https://travis-ci.org/JuliaMusic/MusicManipulations.jl.svg?branch=master)](https://travis-ci.org/JuliaMusic/MusicManipulations.jl) 
+
 Detrended Fluctuation Analysis (DFA)
 =============================================
 
@@ -8,9 +12,25 @@ The DFA allows one to study correlations in data, without disturbance of seasona
 The implementation is based, among others, on this article:
 *Podobnik B Stanley H . Detrended cross-correlation analysis: A new method for analyzing two nonstationary time series (2008)*         DOI : 10.1103/PhysRevLett.100.084102
 
+### Installation :
+
+In Julia, enter :
+
+```julia
+julia> using Pkg
+Pkg.clone("https://github.com/johncwok/DetrendedFluctuationAnalysis.jl.git")
+```
+and then :
+
+```julia
+julia> using DetrendedFluctuationAnalysis
+```
+
+You are now ready to call and use the function DFA() !
+
 ### Perform a 2D DFA computation :
 
-Call the DFA function DFA(data1,data1,box_b::Int,box_s::Int,nb_pt::Int)
+Call the DFA function DFA(data1,data1,box_b::Int,box_s::Int,nb_pt::Int,step::Int)
 
 the arguments have the following meaning :
 * data1, data2 : the first  and second time series of data to analyse
@@ -18,6 +38,7 @@ the arguments have the following meaning :
 the total length of the time-series, otherwise you'll get artefacts. Stopping at a box_s roughly equal to 1/4 of the total length 
 is a good idea.
 * nb_pt : the number of points you want to perform the analysis onto. 
+* step : the parameter commanding the overlap between the windows during the avering process. (a value of 20 is good).
 
 It returns :
 * the list of points where the analysis was performed
@@ -34,7 +55,7 @@ Calling the DFA function with white noise,
 
 ```julia
 julia> a = rand(1000)
-x,y = DFA(a,a,20,200,30)
+x,y = DFA(a,a,20,200,30,20)
 ```
 will give the following plot :
 
@@ -59,9 +80,7 @@ plot(x,exp(b)*x.^a, color = "black",linestyle = ":", label = string(L"fit. expon
 ![index](https://user-images.githubusercontent.com/34754896/42929947-e085364e-8b3b-11e8-80d9-98e863ad9744.png)
 
 
-
 Requirements
 ------------
 
 * Polynomials
-* LinearAlgebra
