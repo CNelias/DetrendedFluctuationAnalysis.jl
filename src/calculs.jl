@@ -21,17 +21,6 @@ function partitioning(x,window,step)
     return [x[i:i+window-1] for i in 1:step:length(x) if  i + window <= length(x)]
 end
 
-function partitionin(x,box_size)
-    partitionned_data = Float64[]
-    len = length(x)-(box_size-1)
-    for i in 1:len
-        for j in 0:(box_size-1)
-            append!(partitionned_data,x[i+j])
-        end
-    end
-    return reshape(partitionned_data,(box_size,len))'
-end
-
 function detrending(values; order = 1)
     position = collect(1:length(values))
     fit = polyfit(position,values,order)
